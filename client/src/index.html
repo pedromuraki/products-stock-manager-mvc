@@ -7,15 +7,98 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   <meta name="format-detection" content="telephone=no">
 
-  <title>Cangaceiro Javascript</title>
+  <title>Products Stock Manager</title>
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
-  <h1>dasdasdas</h1>
-  <button class="btn btn-primary">dasdasadsads</button>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2>Products Stock Manager</h2>
+
+        <form id="form">
+          <div class="form-group">
+            <label for="product">Product</label>
+            <input type="text" class="form-control" id="product" placeholder="Product's name" required>
+          </div>
+          <div class="form-group">
+            <label for="sku">SKU</label>
+            <input type="text" class="form-control" id="sku" placeholder="Product's SKU" required>
+          </div>
+          <div class="form-group">
+            <label for="qty">Quantity</label>
+            <input type="number" class="form-control" id="qty" placeholder="Quantity" min="1" value="1" required>
+          </div>
+          <div class="form-group">
+            <label for="salePrice">Sale Price</label>
+            <input type="number" class="form-control" id="salePrice" placeholder="Sale Price" min="0.01" step="0.01"
+              required>
+          </div>
+          <button type="submit" class="btn btn-primary">Add product to stock</button>
+        </form>
+
+        <div class="alert alert-success">
+          A simple success alert—check it out!
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>SKU</th>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Sale Price</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-sku="">
+                <td>1</td>
+                <td>Mark</td>
+                <td><input type="number" class="form-control" id="qty" placeholder="Quantity" min="1" value="25"
+                    disabled></td>
+                <td><input type="number" class="form-control" id="salePrice" placeholder="Sale Price" min="0.01"
+                    step="0.01" value="79.99" disabled></td>
+                <td>
+                  <button type="button" class="btn btn-primary btn-sm" id="update" data-sku="" disabled>Update</button>
+                  <button type="button" class="btn btn-danger btn-sm" id="remove" data-sku="">Remove</button>
+                </td>
+              </tr>
+              <tr data-sku="">
+                <td>2</td>
+                <td>Jacob</td>
+                <td><input type="number" class="form-control" id="qty" placeholder="Quantity" min="1" value="25"
+                    disabled></td>
+                <td><input type="number" class="form-control" id="salePrice" placeholder="Sale Price" min="0.01"
+                    step="0.01" value="79.99" disabled></td>
+                <td>
+                  <button type="button" class="btn btn-primary btn-sm" id="update" data-sku="">Update</button>
+                  <button type="button" class="btn btn-danger btn-sm" id="remove" data-sku="">Remove</button>
+                </td>
+              </tr>
+              <tr data-sku="">
+                <td>3</td>
+                <td>Larry</td>
+                <td><input type="number" class="form-control" id="qty" placeholder="Quantity" min="1" value="25"
+                    disabled></td>
+                <td><input type="number" class="form-control" id="salePrice" placeholder="Sale Price" min="0.01"
+                    step="0.01" value="79.99" disabled></td>
+                <td>
+                  <button type="button" class="btn btn-primary btn-sm" id="update" data-sku="">Update</button>
+                  <button type="button" class="btn btn-danger btn-sm" id="remove" data-sku="">Remove</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
 
 </html>

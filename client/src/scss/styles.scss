@@ -1,0 +1,15 @@
+input[disabled] {
+  cursor: pointer;
+  &:hover {
+    border-color: #007bff;
+  }
+}
+
+h2 {
+  margin: 20px 0 30px 0;
+}
+
+.table-responsive,
+.alert {
+  margin-top: 40px;
+}
