@@ -1,1 +1,2 @@
-
+- Finalizar método remove
+- Criar pattern observer / pubsub

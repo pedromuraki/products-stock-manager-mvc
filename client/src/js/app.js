@@ -9,8 +9,10 @@ import Product from './models/Product'
 import ProductsController from './controllers/ProductsController'
 
 const $list = document.getElementById('list')
+const $msg = document.getElementById('msg')
 
-const controller = new ProductsController($list)
+const controller = new ProductsController($list, $msg)
+
 controller.add(new Product('nome', '123456', '222', '22.99'))
 controller.add(new Product('dasdsadsa', '3123123', '333', '44.99'))
 controller.add(new Product('ttttt', '5858', '333', '44.99'))

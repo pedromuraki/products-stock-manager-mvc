@@ -5,4 +5,20 @@ export default class Product {
     })
     Object.freeze(this)
   }
+
+  get name() {
+    return this._name
+  }
+
+  get sku() {
+    return this._sku
+  }
+
+  get qty() {
+    return this._qty
+  }
+
+  get price() {
+    return this._price
+  }
 }
