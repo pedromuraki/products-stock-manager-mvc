@@ -4,12 +4,14 @@ import AlertMsg from '../models/AlertMsg'
 import AlertMsgView from '../views/AlertMsgView'
 
 import eventEmitter from '../helpers/eventEmitter'
+import { nodelistToArray } from '../helpers/helpers'
 
 export default class ProductsController {
   constructor(listWrapper, msgWrapper) {
+    this._listWrapper = listWrapper
     /* create instance of products list model and its view */
     this._productsList = new ProductsList()
-    this._productsListView = new ProductsListView(listWrapper)
+    this._productsListView = new ProductsListView(this._listWrapper)
     /* render previous items on table */
     this._productsListView.render(this._productsList.items)
     /* create instance of alert message model and its view */
@@ -21,6 +23,7 @@ export default class ProductsController {
     eventEmitter.on('productsListChanged', () => {
       this._productsListView.render(this._productsList.items)
       this._alertMsgView.render(this._alertMsg.content, this._alertMsg.type)
+      this._addRemoveListeners()
     })
   }
 
@@ -29,15 +32,14 @@ export default class ProductsController {
     if (this._productsList.items.filter(item => item.sku === product.sku).length > 0) {
       this._updateAlertMsgContent(`#${product.sku} already exists in inventory.`, 'alert-danger')
       this._alertMsgView.render(this._alertMsg.content, this._alertMsg.type)
+      return
     }
     /* update alert message and add product */
-    else {
-      this._updateAlertMsgContent(`#${product.sku} added to inventory.`, 'alert-success')
-      this._productsList.add(product, callback)
-      eventEmitter.emit('productsListChanged')
-      /* trigger callback if exists */
-      if (callback) callback()
-    }
+    this._updateAlertMsgContent(`#${product.sku} added to inventory.`, 'alert-success')
+    this._productsList.add(product, callback)
+    eventEmitter.emit('productsListChanged')
+    /* trigger callback if exists */
+    if (callback) callback()
   }
 
   remove(sku, callback) {
@@ -50,6 +52,11 @@ export default class ProductsController {
     eventEmitter.emit('productsListChanged')
     /* trigger callback if exists */
     if (callback) callback()
+  }
+
+  _addRemoveListeners() {
+    const removeBtns = nodelistToArray('[data-js="remove"]', this._listWrapper)
+    if (removeBtns.length > 0) removeBtns.forEach(btn => btn.addEventListener('click', () => this.remove(btn.getAttribute('data-sku'))))
   }
 
   _updateAlertMsgContent(content, type) {

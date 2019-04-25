@@ -1,1 +1,2 @@
+- Resetar timeouts
 - Criar modal de edição ?

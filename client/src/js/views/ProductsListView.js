@@ -18,8 +18,8 @@ export default class ProductsListView {
           <td>
             <input type="number" class="form-control" id="salePrice" placeholder="Sale Price" min="0.01" step="0.01" value="${price}" disabled></td>
           <td>
-            <button type="button" class="btn btn-primary btn-sm" id="update" data-sku="${sku}" disabled>Update</button>
-            <button type="button" class="btn btn-danger btn-sm" id="remove" data-sku="${sku}">Remove</button>
+            <button type="button" class="btn btn-primary btn-sm" data-js="update" data-sku="${sku}" disabled>Update</button>
+            <button type="button" class="btn btn-danger btn-sm" data-js="remove" data-sku="${sku}">Remove</button>
           </td>
         </tr>
         ${acc}
