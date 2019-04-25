@@ -1,3 +1,2 @@
-- Finalizar método remove
 - Criar pattern observer / pubsub
 - Criar modal de edição ?
