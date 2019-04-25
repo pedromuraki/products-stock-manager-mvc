@@ -1,12 +1,14 @@
+// import defaultProducts
+
 export default class ProductsList {
-  constructor() {
-    this._items = []
+  constructor(items = []) {
+    this._items = items
     Object.freeze(this)
   }
 
-  // get items() {
-  //   return this._items
-  // }
+  get items() {
+    return this._items
+  }
 
   add(product) {
     this._items.push(product)

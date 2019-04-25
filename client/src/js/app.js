@@ -8,9 +8,9 @@ import '../scss/index.scss'
 import Product from './models/Product'
 import ProductsController from './controllers/ProductsController'
 
-// console.log(new Product('nome', '123456', '222', '22.99'))
+const $list = document.getElementById('list')
 
-const controller = new ProductsController()
+const controller = new ProductsController($list)
 controller.add(new Product('nome', '123456', '222', '22.99'))
 controller.add(new Product('dasdsadsa', '3123123', '333', '44.99'))
 controller.add(new Product('ttttt', '5858', '333', '44.99'))

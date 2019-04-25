@@ -1,16 +1,17 @@
 import ProductsList from '../models/ProductsList'
-// import ProductsView from '../views/ProductsView'
+import ProductsListView from '../views/ProductsListView'
 
 export default class ProductsController {
-  constructor() {
+  constructor(listWrapper) {
     this._productsList = new ProductsList()
-    // this._productsView = new ProductsView()
+    this._productsListView = new ProductsListView(listWrapper)
+    this._productsListView.render(this._productsList.items)
     Object.freeze(this)
   }
 
   add(product) {
     this._productsList.add(product)
-    // this._productsView.render(this._productsList)
+    this._productsListView.update(product)
   }
 
   remove(sku) {
