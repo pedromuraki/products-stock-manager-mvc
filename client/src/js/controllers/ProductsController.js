@@ -24,7 +24,7 @@ export default class ProductsController {
     })
   }
 
-  add(product) {
+  add(product, callback) {
     /* trigger alert if sku already exists */
     if (this._productsList.items.filter(item => item.sku === product.sku).length > 0) {
       this._updateAlertMsgContent(`#${product.sku} already exists in inventory.`, 'alert-danger')
@@ -33,17 +33,23 @@ export default class ProductsController {
     /* update alert message and add product */
     else {
       this._updateAlertMsgContent(`#${product.sku} added to inventory.`, 'alert-success')
-      this._productsList.add(product)
+      this._productsList.add(product, callback)
+      eventEmitter.emit('productsListChanged')
+      /* trigger callback if exists */
+      if (callback) callback()
     }
   }
 
-  remove(sku) {
+  remove(sku, callback) {
     /* return error if sku not found */
     const i = this._productsList.items.findIndex(product => product.sku === sku)
     if (i < 0) throw new Error('SKU no found.')
     /* update alert message and remove product */
     this._updateAlertMsgContent(`#${sku} removed from inventory.`, 'alert-warning')
-    this._productsList.remove(i)
+    this._productsList.remove(i, callback)
+    eventEmitter.emit('productsListChanged')
+    /* trigger callback if exists */
+    if (callback) callback()
   }
 
   _updateAlertMsgContent(content, type) {

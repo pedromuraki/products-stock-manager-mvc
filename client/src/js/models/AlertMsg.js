@@ -2,7 +2,6 @@ export default class AlertMsg {
   constructor(content = null, type = null) {
     this._content = content
     this._type = type
-    // Object.freeze(this)
   }
 
   get content() {
