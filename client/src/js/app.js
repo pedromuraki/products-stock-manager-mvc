@@ -17,7 +17,7 @@ controller.add(new Product('nome', '123456', '222', '22.99'))
 controller.add(new Product('dasdsadsa', '3123123', '333', '44.99'))
 controller.add(new Product('ttttt', '5858', '333', '44.99'))
 controller.add(new Product('xxxxxx', '9999', '333', '44.99'))
-controller.remove('123456')
+controller.remove('9999')
 console.log(controller)
 
 /*

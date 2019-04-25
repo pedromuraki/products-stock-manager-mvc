@@ -14,8 +14,7 @@ export default class ProductsList {
     this._items.push(product)
   }
 
-  remove(sku) {
-    const i = this._items.findIndex(product => product._sku === sku)
+  remove(i) {
     this._items.splice(i, 1)
   }
 }
