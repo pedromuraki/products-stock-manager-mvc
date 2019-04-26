@@ -13,7 +13,9 @@ export default class ProductsController {
     this._productsList = new ProductsList()
     this._productsListView = new ProductsListView(this._listWrapper)
     /* render previous items on table */
-    this._productsListView.render(this._productsList.items)
+    this._productsListView.render(this._productsList)
+    /* add actions listeners */
+    this._addActionsListeners()
     /* create instance of alert message model and its view */
     this._alertMsg = new AlertMsg()
     this._alertMsgView = new AlertMsgView(msgWrapper)
@@ -21,9 +23,9 @@ export default class ProductsController {
     Object.freeze(this)
     /* set "on products list changed" listeners */
     eventEmitter.on('productsListChanged', () => {
-      this._productsListView.render(this._productsList.items)
-      this._alertMsgView.render(this._alertMsg.content, this._alertMsg.type)
-      this._addRemoveListeners()
+      this._productsListView.render(this._productsList)
+      this._alertMsgView.render(this._alertMsg)
+      this._addActionsListeners()
     })
   }
 
@@ -31,12 +33,12 @@ export default class ProductsController {
     /* trigger alert if sku already exists */
     if (this._productsList.items.filter(item => item.sku === product.sku).length > 0) {
       this._updateAlertMsgContent(`#${product.sku} already exists in inventory.`, 'alert-danger')
-      this._alertMsgView.render(this._alertMsg.content, this._alertMsg.type)
+      this._alertMsgView.render(this._alertMsg)
       return
     }
     /* update alert message and add product */
     this._updateAlertMsgContent(`#${product.sku} added to inventory.`, 'alert-success')
-    this._productsList.add(product, callback)
+    this._productsList.add(product)
     eventEmitter.emit('productsListChanged')
     /* trigger callback if exists */
     if (callback) callback()
@@ -48,15 +50,24 @@ export default class ProductsController {
     if (i < 0) throw new Error('SKU no found.')
     /* update alert message and remove product */
     this._updateAlertMsgContent(`#${sku} removed from inventory.`, 'alert-warning')
-    this._productsList.remove(i, callback)
+    this._productsList.remove(i)
     eventEmitter.emit('productsListChanged')
     /* trigger callback if exists */
     if (callback) callback()
   }
 
-  _addRemoveListeners() {
+  update(sku, data) {
+
+  }
+
+  _addActionsListeners() {
     const removeBtns = nodelistToArray('[data-js="remove"]', this._listWrapper)
     if (removeBtns.length > 0) removeBtns.forEach(btn => btn.addEventListener('click', () => this.remove(btn.getAttribute('data-sku'))))
+
+    const updateBtns = nodelistToArray('[data-js="update"]', this._listWrapper)
+    if (updateBtns.length > 0) updateBtns.forEach(btn => btn.addEventListener('click', () => {
+      console.log('update')
+    }))
   }
 
   _updateAlertMsgContent(content, type) {

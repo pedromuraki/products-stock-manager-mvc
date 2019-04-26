@@ -1,16 +1,19 @@
 export default class AlertMsgView {
   constructor(msgWrapper) {
     this._msgWrapper = msgWrapper
-    Object.freeze(this)
+    this._timeout = null
   }
 
-  render(content, type) {
+  render(alertMsgModel) {
+    clearTimeout(this._timeout)
+
     this._msgWrapper.innerHTML = `
-      <div class="alert ${type}">
-        ${content}
+      <div class="alert ${alertMsgModel.type}">
+        ${alertMsgModel.content}
       </div>
     `
-    setTimeout(() => this._clear(), 5000)
+
+    this._timeout = setTimeout(() => this._clear(), 5000)
   }
 
   _clear() {

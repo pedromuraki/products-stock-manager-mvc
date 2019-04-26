@@ -1,2 +1,2 @@
-- Resetar timeouts
-- Criar modal de edição ?
+- Criar metodo update
+- Criar listener pro botão update
