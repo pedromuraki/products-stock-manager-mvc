@@ -57,8 +57,21 @@ export default class ProductsController {
     if (callback) callback()
   }
 
-  update(sku, data) {
+  update(sku, callback) {
+    const data = {
+      qty: this._listWrapper.querySelector(`input[data-sku="${sku}"][data-input="qty"]`).value,
+      price: this._listWrapper.querySelector(`input[data-sku="${sku}"][data-input="price"]`).value
+    }
 
+    /* return error if sku not found */
+    const i = this._productsList.items.findIndex(product => product.sku === sku)
+    if (i < 0) throw new Error('SKU no found.')
+    /* update alert message and update product */
+    this._updateAlertMsgContent(`#${sku} updated.`, 'alert-success')
+    this._productsList.update(i, data)
+    eventEmitter.emit('productsListChanged')
+    /* trigger callback if exists */
+    if (callback) callback()
   }
 
   _addActionsListeners() {
@@ -66,9 +79,7 @@ export default class ProductsController {
     if (removeBtns.length > 0) removeBtns.forEach(btn => btn.addEventListener('click', () => this.remove(btn.getAttribute('data-sku'))))
 
     const updateBtns = nodelistToArray('[data-js="update"]', this._listWrapper)
-    if (updateBtns.length > 0) updateBtns.forEach(btn => btn.addEventListener('click', () => {
-      console.log('update')
-    }))
+    if (updateBtns.length > 0) updateBtns.forEach(btn => btn.addEventListener('click', () => this.update(btn.getAttribute('data-sku'))))
   }
 
   _updateAlertMsgContent(content, type) {

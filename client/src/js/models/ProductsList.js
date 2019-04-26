@@ -25,6 +25,14 @@ export default class ProductsList {
     this._updateLocalStorage()
   }
 
+  update(i, data) {
+    this._items[i] = {
+      ...this._items[i],
+      ...data
+    }
+    this._updateLocalStorage()
+  }
+
   _updateLocalStorage() {
     window.localStorage.setItem('productsListItems', JSON.stringify(this._items))
   }
