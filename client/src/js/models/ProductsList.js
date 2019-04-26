@@ -7,7 +7,7 @@ const defaultProducts = [
 
 export default class ProductsList {
   constructor() {
-    this._items = defaultProducts
+    this._items = JSON.parse(window.localStorage.getItem('productsListItems')) || defaultProducts
     Object.freeze(this)
   }
 
@@ -17,9 +17,15 @@ export default class ProductsList {
 
   add(product) {
     this._items.push(product)
+    this._updateLocalStorage()
   }
 
   remove(i) {
     this._items.splice(i, 1)
+    this._updateLocalStorage()
+  }
+
+  _updateLocalStorage() {
+    window.localStorage.setItem('productsListItems', JSON.stringify(this._items))
   }
 }

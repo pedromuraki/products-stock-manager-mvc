@@ -1,24 +1,24 @@
 export default class Product {
-  constructor(_name, _sku, _qty, _price) {
+  constructor(name, sku, qty, price) {
     Object.assign(this, {
-      _name, _sku, _qty, _price
+      name, sku, qty, price
     })
     Object.freeze(this)
   }
 
-  get name() {
-    return this._name
-  }
+  // get name() {
+  //   return this._name
+  // }
 
-  get sku() {
-    return this._sku
-  }
+  // get sku() {
+  //   return this._sku
+  // }
 
-  get qty() {
-    return this._qty
-  }
+  // get qty() {
+  //   return this._qty
+  // }
 
-  get price() {
-    return this._price
-  }
+  // get price() {
+  //   return this._price
+  // }
 }
