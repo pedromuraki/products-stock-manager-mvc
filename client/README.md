@@ -1,19 +1,21 @@
-HTML, CSS & JS boilerplate for projects.
+A products stock manager app. Practicing OO Javascript with MVC pattern.
 
-# Setup
+Online application:
 
-```
-$ git clone https://github.com/pedromuraki/boilerplate .
-```
+# Running on localhost
 
 ```
-$ rm -rf .git
+$ git clone https://github.com/pedromuraki/products-stock-manager-mvc .
 ```
 
 ```
-$ git init
+$ cd client
 ```
 
 ```
 $ npm i
+```
+
+```
+$ npm start
 ```
