@@ -42,7 +42,6 @@ export default class ProductsController {
     eventEmitter.emit('productsListChanged')
     /* trigger callback if exists */
     if (callback) callback()
-    console.log(this._productsList.items)
   }
 
   remove(sku, callback) {

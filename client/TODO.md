@@ -1,3 +1,1 @@
 - Verificar se possível trocar localStorage por IndexedDB
-- Subir app no github e netlify
-- Criar readme
